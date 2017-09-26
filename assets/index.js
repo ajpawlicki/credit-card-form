@@ -27,6 +27,17 @@ const isValidAmEx = (num, cvv) => {
 
 const isValidExpiration = (month, year) => {
   const date = new Date();
+  
+  const currMonth = date.getMonth() + 1;
+  const currYear = date.getFullYear();
+
+  if (year > currYear) {
+    return true;
+  } else if (Number(year) === currYear) {
+    return month > currMonth;
+  } else {
+    return false;
+  }
 };
 
 const typeNumsOnly = (event) => {
@@ -34,18 +45,26 @@ const typeNumsOnly = (event) => {
 };
 
 $(document).ready(() => {
+  const name = $('#name');
   const cardNumber = $('#card-number');
   const cvv = $('#cvv2');
+
+  const month = $('#month');
+  const year = $('#year');
   
   const submit = $('#submit');
 
   submit.click(e => {
     e.preventDefault();
 
-    if (isValidCardNumber(cardNumber.val(), cvv.val())) {
-      alert('Great!');
-    } else {
+    if (!isValidName(name.val())) {
+      alert('Invalid name!');
+    } else if (!isValidCardNumber(cardNumber.val(), cvv.val())) {
       alert('Invalid card number and cvv!');
+    } else if (!isValidExpiration(month.val(), year.val())) {
+      alert('Invalid expiration!');
+    } else {
+      alert('Great!');
     }
   });
 });
