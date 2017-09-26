@@ -15,27 +15,61 @@ $(document).ready(() => {
   submit.click(e => {
     e.preventDefault();
     errorType.empty();
+    errorMessage.css('visibility', 'visible');
     
     if (!isValidName(name.val())) {
-      errorMessage.css('visibility', 'visible');
       errorType.append('<span>Invalid name</span>');
       // alert('Invalid name!');
     } else if (!isValidCardNumber(cardNumber.val(), cvv.val())) {
-      errorMessage.css('visibility', 'visible');
       errorType.append('<span>Invalid card number and cvv</span>');
       // alert('Invalid card number and cvv!');
     } else if (!isValidExpiration(month.val(), year.val())) {
-      errorMessage.css('visibility', 'visible');
       errorType.append('<span>Invalid expiration</span>');
       // alert('Invalid expiration!');
     } else {
       errorMessage.css('visibility', 'hidden');
-      alert('Great, everything is correct!');
+      alert('Great, everything looks good!');
     }
   });
 
   cardNumber.keydown(typeNumsOnly);
   cvv.keydown(typeNumsOnly);
+
+  const amex = $('#amex');
+  const visa = $('#visa');
+
+  const cardNumberField = $('#card-number-field');
+
+  cardNumber.keyup(() => {
+    amex.removeClass('transparent');
+    visa.removeClass('transparent');
+
+    const startsWith4 = cardNumber.val()[0] === '4';
+    if (startsWith4) amex.addClass('transparent');
+    
+    const firstTwoChars = cardNumber.val().slice(0,2);
+    const hasAmexFirstTwoChars = firstTwoChars === '34' || firstTwoChars === '37';
+
+    if (hasAmexFirstTwoChars) visa.addClass('transparent');
+
+    if (isValidAmExNum(cardNumber.val()) || isValidVisaNum(cardNumber.val())) {
+      cardNumberField.removeClass('has-error');
+      cardNumberField.addClass('has-success');
+    } else {
+      cardNumberField.addClass('has-error');
+    }
+  });
+
+  const cvvField = $('#cvv-field');
+
+  cvv.keyup(() => {
+    if (isValidCardNumber(cardNumber.val(), cvv.val())) {
+      cvvField.removeClass('has-error');
+      cvvField.addClass('has-success');
+    } else {
+      cvvField.addClass('has-error');
+    }
+  });
 });
 
 const isValidName = (name) => {
@@ -43,26 +77,34 @@ const isValidName = (name) => {
 };
 
 const isValidCardNumber = (num, cvv) => {
-  return isValidVisa(num, cvv) || isValidAmEx(num, cvv);
+  const isValidVisa = isValidVisaNum(num) && isValidVisaCVV(cvv);
+  const isValidAmEx = isValidAmExNum(num) && isValidAmExCVV(cvv);
+
+  return isValidVisa || isValidAmEx;
 };
 
-const isValidVisa = (num, cvv) => {
+const isValidVisaNum = (num) => {
   const isValidLength = num.length === 16;
   const startsWith4 = num[0] === '4';
-  const hasValidCVV = cvv.length === 3;
-
-  return isValidLength && startsWith4 && hasValidCVV;
+  
+  return isValidLength && startsWith4;
 };
 
-const isValidAmEx = (num, cvv) => {
+const isValidVisaCVV = (cvv) => {
+  return cvv.length === 3;
+};
+
+const isValidAmExNum = (num) => {
   const isValidLength = num.length === 15;
 
   const firstTwoChars = num.slice(0,2);
   const hasCorrectFirstTwoChars = firstTwoChars === '34' || firstTwoChars === '37';
   
-  const hasValidCVV = cvv.length === 4;
+  return isValidLength && hasCorrectFirstTwoChars;
+};
 
-  return isValidLength && hasCorrectFirstTwoChars && hasValidCVV;
+const isValidAmExCVV = (cvv) => {
+  return cvv.length === 4;
 };
 
 const isValidExpiration = (month, year) => {
