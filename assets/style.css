@@ -1,0 +1,31 @@
+.form-container {
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  background-color: #DCDCDC;
+  max-width: 600px;
+  margin: 20px auto;
+  overflow: hidden;
+  padding: 25px;
+}
+
+.group {
+  padding: 10px;
+}
+
+#error-container {
+  visibility: hidden;
+  color: red;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  margin: 10px auto;
+  max-width: 600px;
+  font-size: 140%;
+}
+
+.transparent {
+  opacity: 0.2;
+}
