@@ -3,41 +3,86 @@
   <head>
     <meta charset="utf-8">
     <title>Credit Card Form</title>
+    
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/index.js"></script>
   </head>
   
   <body>
-    <div>
-      <form action="">
-        <div><input type="text" id="name" placeholder="Name"></div>
-        <div><input type="text" id="card-number" placeholder="Card Number"></div>
-        <div><input type="text" id="cvv2" placeholder="CVV2"></div>
-        <div>
-          <label>Expiration:</label>
-          <select name="" id="">
-              <option value="01">January</option>
-              <option value="02">February </option>
-              <option value="03">March</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">August</option>
-              <option value="09">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-          </select>
-          <select>
-              <option value="17"> 2017</option>
-              <option value="18"> 2018</option>
-              <option value="19"> 2019</option>
-              <option value="20"> 2020</option>
-              <option value="21"> 2021</option>
-              <option value="22"> 2022</option>
-          </select>
+    <div class="container-fluid" id="body-container">
+      
+      <div class="alert alert-warning container" id="error-container">
+        <div class="row">
+          <i class="glyphicon glyphicon-exclamation-sign"></i>
+          <span>There was a problem:</span>
         </div>
-      </form>
+        <div class="row" id="error-type">
+        </div>
+      </div>
+
+      <div class="form-container">
+        <h3>Enter your credit card information</h3>
+        <form action="">
+          <div class="row group">
+            <label class="control-label col-sm-2" for="name">Name</label>
+            <div class="col-sm-10"><input class="form-control" type="text" id="name" placeholder="Name"></div>
+          </div>
+          
+          <div id="card-number-field" class="row group">
+            <label class="control-label col-sm-2" for="card-number">Card Number</label>
+            <div class="col-sm-10">
+              <input class="form-control"
+              type="text" id="card-number"
+              placeholder="Card Number"
+              maxlength="16">
+            </div>
+          </div>
+
+          <div id="cvv-field" class="row group">
+            <label class="control-label col-sm-2" for="cvv2">CVV2</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" id="cvv2" placeholder="CVV2" maxlength="4">
+            </div>
+          </div>
+          
+          <div class="row group">
+            <label>Expiration: </label>
+            <select name="" id="month">
+                <option value="01">January</option>
+                <option value="02">February </option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <select id="year">
+                <option value="2017"> 2017</option>
+                <option value="2018"> 2018</option>
+                <option value="2019"> 2019</option>
+                <option value="2020"> 2020</option>
+                <option value="2021"> 2021</option>
+                <option value="2022"> 2022</option>
+            </select>
+          </div>
+
+          <div class="row group">
+            <img src="assets/images/amex.jpg" id="amex">
+            <img src="assets/images/visa.jpg" id="visa">
+          </div>
+          
+          <div class="row group"><button class="btn btn-default" type="submit" id="submit">Submit</div>
+        </form>
+      </div>
+
     </div>
     
   </body>
