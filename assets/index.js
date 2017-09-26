@@ -2,23 +2,35 @@ $(document).ready(() => {
   const name = $('#name');
   const cardNumber = $('#card-number');
   const cvv = $('#cvv2');
+  const body = $('#body-container');
 
   const month = $('#month');
   const year = $('#year');
   
   const submit = $('#submit');
 
+  const errorMessage = $('#error-container');
+  const errorType = $('#error-type');
+
   submit.click(e => {
     e.preventDefault();
-
+    errorType.empty();
+    
     if (!isValidName(name.val())) {
-      alert('Invalid name!');
+      errorMessage.css('visibility', 'visible');
+      errorType.append('<span>Invalid name</span>');
+      // alert('Invalid name!');
     } else if (!isValidCardNumber(cardNumber.val(), cvv.val())) {
-      alert('Invalid card number and cvv!');
+      errorMessage.css('visibility', 'visible');
+      errorType.append('<span>Invalid card number and cvv</span>');
+      // alert('Invalid card number and cvv!');
     } else if (!isValidExpiration(month.val(), year.val())) {
-      alert('Invalid expiration!');
+      errorMessage.css('visibility', 'visible');
+      errorType.append('<span>Invalid expiration</span>');
+      // alert('Invalid expiration!');
     } else {
-      alert('Great!');
+      errorMessage.css('visibility', 'hidden');
+      alert('Great, everything is correct!');
     }
   });
 
