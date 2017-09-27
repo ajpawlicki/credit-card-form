@@ -4,7 +4,7 @@ A credit card form.<br>
 ## Comments
 
 ### Technologies
-* JQuery
+* jQuery
 * Bootstrap
 
 ### Timeline
