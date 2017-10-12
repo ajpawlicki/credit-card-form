@@ -2,7 +2,6 @@ $(document).ready(() => {
   const name = $('#name');
   const cardNumber = $('#card-number');
   const cvv = $('#cvv2');
-  const body = $('#body-container');
 
   const month = $('#month');
   const year = $('#year');
@@ -15,19 +14,19 @@ $(document).ready(() => {
   submit.click(e => {
     e.preventDefault();
     errorType.empty();
-    errorMessage.css('visibility', 'visible');
+    errorMessage.css('display', 'block');
     
     if (!isValidName(name.val())) {
       errorType.append('<span>Invalid name</span>');
-      // alert('Invalid name!');
+
     } else if (!isValidCardNumber(cardNumber.val(), cvv.val())) {
       errorType.append('<span>Invalid card number and cvv</span>');
-      // alert('Invalid card number and cvv!');
+
     } else if (!isValidExpiration(month.val(), year.val())) {
       errorType.append('<span>Invalid expiration</span>');
-      // alert('Invalid expiration!');
+
     } else {
-      errorMessage.css('visibility', 'hidden');
+      errorMessage.css('display', 'none');
       alert('Great, everything looks good!');
     }
   });
@@ -72,6 +71,8 @@ $(document).ready(() => {
   });
 });
 
+// Functions to call in user events:
+
 const isValidName = (name) => {
   return name.trim().length > 4;
 };
@@ -115,7 +116,7 @@ const isValidExpiration = (month, year) => {
 
   if (year > currYear) {
     return true;
-  } else if (Number(year) === currYear) {
+  } else if (+year === currYear) {
     return month > currMonth;
   }
   
