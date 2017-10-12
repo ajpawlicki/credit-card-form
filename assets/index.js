@@ -14,7 +14,7 @@ $(document).ready(() => {
   submit.click(e => {
     e.preventDefault();
     errorType.empty();
-    errorMessage.css('display', 'block');
+    errorMessage.show();
     
     if (!isValidName(name.val())) {
       errorType.append('<span>Invalid name</span>');
@@ -26,7 +26,7 @@ $(document).ready(() => {
       errorType.append('<span>Invalid expiration</span>');
 
     } else {
-      errorMessage.css('display', 'none');
+      errorMessage.hide();
       alert('Great, everything looks good!');
     }
   });
@@ -40,16 +40,32 @@ $(document).ready(() => {
   const cardNumberField = $('#card-number-field');
 
   cardNumber.keyup(() => {
+    const cardNumberEl = cardNumber[0];
+    const cvvEl = cvv[0];
+
     amex.removeClass('transparent');
     visa.removeClass('transparent');
+    cardNumberEl.maxLength = '16';
+    cvvEl.maxLength = '4';
 
     const startsWith4 = cardNumber.val()[0] === '4';
-    if (startsWith4) amex.addClass('transparent');
+    
+    if (startsWith4) {
+      amex.addClass('transparent');
+      
+      cardNumberEl.maxLength = '16';
+      cvvEl.maxLength = '3';
+    }
     
     const firstTwoChars = cardNumber.val().slice(0,2);
     const hasAmexFirstTwoChars = firstTwoChars === '34' || firstTwoChars === '37';
 
-    if (hasAmexFirstTwoChars) visa.addClass('transparent');
+    if (hasAmexFirstTwoChars) {
+      visa.addClass('transparent');
+
+      cardNumberEl.maxLength = '15';
+      cvvEl.maxLength = '4';
+    }
 
     if (isValidAmExNum(cardNumber.val()) || isValidVisaNum(cardNumber.val())) {
       cardNumberField.removeClass('has-error');
