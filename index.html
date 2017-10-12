@@ -14,7 +14,7 @@
   <body>
     <div class="container-fluid" id="body-container">
       
-      <div class="alert alert-warning container" id="error-container">
+      <div class="alert alert-warning container error-container" id="error-container">
         <div class="row">
           <i class="glyphicon glyphicon-exclamation-sign"></i>
           <span>There was a problem:</span>
@@ -24,14 +24,14 @@
       </div>
 
       <div class="form-container">
-        <h3>Enter your credit card information</h3>
+        <h4>Enter your credit card information</h4>
         <form action="">
-          <div class="row group">
+          <div class="row inputs-group">
             <label class="control-label col-sm-2" for="name">Name</label>
             <div class="col-sm-10"><input class="form-control" type="text" id="name" placeholder="Name"></div>
           </div>
           
-          <div id="card-number-field" class="row group">
+          <div id="card-number-field" class="row inputs-group">
             <label class="control-label col-sm-2" for="card-number">Card Number</label>
             <div class="col-sm-10">
               <input class="form-control"
@@ -41,14 +41,14 @@
             </div>
           </div>
 
-          <div id="cvv-field" class="row group">
+          <div id="cvv-field" class="row inputs-group">
             <label class="control-label col-sm-2" for="cvv2">CVV2</label>
             <div class="col-sm-10">
               <input class="form-control" type="text" id="cvv2" placeholder="CVV2" maxlength="4">
             </div>
           </div>
           
-          <div class="row group">
+          <div class="row inputs-group">
             <label>Expiration: </label>
             <select name="" id="month">
                 <option value="01">January</option>
@@ -74,12 +74,12 @@
             </select>
           </div>
 
-          <div class="row group">
+          <div class="row inputs-group">
             <img src="assets/images/amex.jpg" id="amex">
             <img src="assets/images/visa.jpg" id="visa">
           </div>
           
-          <div class="row group"><button class="btn btn-default" type="submit" id="submit">Submit</div>
+          <div class="row inputs-group"><button class="btn btn-default" type="submit" id="submit">Submit</div>
         </form>
       </div>
 
