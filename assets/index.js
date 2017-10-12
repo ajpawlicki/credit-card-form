@@ -71,7 +71,7 @@ $(document).ready(() => {
   });
 });
 
-// Functions to call in user events:
+// Functions to call for user events:
 
 const isValidName = (name) => {
   return name.trim().length > 4;
