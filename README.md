@@ -1,11 +1,29 @@
 # Credit-card-form
 A credit card form.<br>
 
-## Comments
+## Getting Started
+### Installing Dependencies
+In your root directory run, `npm install`.
 
+### How To Run
+
+#### jQuery Version
+* There is a jQuery version of the app if you open `index.html` in the root directory.
+
+#### React Version
+* In order to make code more modular and extensible, I refactored code using React.
+* Having internal state also makes it easy to render certain features.
+* Directions:
+  * In your root directory run, `npm run server-dev`.
+  * Then run, `npm run react-dev`.
+  * Go to `localhost:3000` in your browser to use app.
+
+## Comments
 ### Technologies
 * jQuery
 * Bootstrap
+* React
+* Webpack
 
 ### Timeline
 In order to best approach the problem, I spent the first 30 minutes outlining some basic user stories:
@@ -24,7 +42,7 @@ Also, it's critical to prevent user mistakes by restricting these mistakes in th
 
 Lastly, I built a few indicators to help improve UI. The CC icons fade out if the number being typed is not applicable. E.g. if a user starts typing "34" then the Visa logo will become transparent so the user knows they are typing in an AmEx number. Also, I used bootstrap's "has-error" and "has-success" classes to indicate to users when they have typed in a valid cc or cvv number.
 
-### Form submission
+### Form Submission
 First, I would ensure all these fields are valid before I sent them over to the server. Then, I would store all the input fields in an object in appropriate key value pairs and send them to the server in an http post request. For any validation errors in the response, I would make sure to let the user know the type of error and if it's necessary for them to resubmit their credit card information. I would also append some sort of error message to the html in the error callback. If the post request is successful, I would append a success message to the html in the success callback.
 
 ### Testing
@@ -40,7 +58,6 @@ I would test that specific features are working for both Visa and AmEx numbers:
 ### Styling
 Some considerations I took into account were that the UI looks clean and easy to use. I used bootstrap's native containers, rows, and cols to ensure that everything was even and mapped out in a pleasant appearance. Also, when resizing the page, nothing funny happens to the UI. I made sure the fields are all visible on one page, but if the page is resized, I can scroll up and down to view inputs. Lastly, I made sure that the error message is clearly visible at the top of the page on an incorrect submit.
 
-### Things to improve
+### Things To Improve
 * More specific details on error messages
-* Make max length dynamic for AmEx and Visa
-* Spaces between numbers for AmEx and Visa (e.g. 4 by 4 for Visa, 4-6-5 for AmEx)
+* Mask cc number input
