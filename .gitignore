@@ -57,3 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# bundle
+react-client/dist/bundle.js
+
+# images
+react-client/dist/*.jpg
+
