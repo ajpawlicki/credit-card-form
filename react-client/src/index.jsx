@@ -38,6 +38,8 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Event handlers:
+
   handleNameChange(e) {
     this.setState({name: e.target.value});
   }
@@ -108,6 +110,30 @@ class App extends Component {
     }
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    
+    this.setState({
+      displayErrorMsg: true,
+      hasNameError: false,
+      hasCardError: false,
+      hasExpirationError: false
+    });
+    
+    if (!this.isValidName(this.state.name)) {
+      this.setState({hasNameError: true});
+    } else if (!this.isValidCardNumber(this.state.cardNumber, this.state.cvv)) {
+      this.setState({hasCardError: true});
+    } else if (!this.isValidExpiration(this.state.expirationMonth, this.state.expirationYear)) {
+      this.setState({hasExpirationError: true});
+    } else {
+      this.setState({displayErrorMsg: false});
+      alert('Great, everything looks good!');
+    }
+  }
+
+  // Helper functions:
+
   isValidName(name) {
     return name.trim().length > 4;
   }
@@ -162,29 +188,6 @@ class App extends Component {
     }
     
     return false;
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    
-    this.setState({
-      displayErrorMsg: true,
-      hasNameError: false,
-      hasCardError: false,
-      hasExpirationError: false
-    });
-    
-    if (!this.isValidName(this.state.name)) {
-      this.setState({hasNameError: true});
-    } else if (!this.isValidCardNumber(this.state.cardNumber, this.state.cvv)) {
-      this.setState({hasCardError: true});
-    } else if (!this.isValidExpiration(this.state.expirationMonth, this.state.expirationYear)) {
-      this.setState({hasExpirationError: true});
-    } else {
-      this.setState({displayErrorMsg: false});
-      alert('Great, everything looks good!');
-    }
-
   }
 
   render() {

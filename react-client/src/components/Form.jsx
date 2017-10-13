@@ -32,20 +32,24 @@ class Form extends Component {
     return (
       <div className="form-container">
         <h4>Enter your credit card information</h4>
+        
         <form onSubmit={this.props.handleSubmit}>
           <NameInput handleNameChange={this.props.handleNameChange} />
+
           <CardNumberInput
             handleCardNumChange={this.props.handleCardNumChange}
             typeNumsOnly={this.typeNumsOnly}
             cardNumberLength={this.props.cardNumberLength}
             handleCardNumKeyUp={this.props.handleCardNumKeyUp}
             cardNumFieldClasses={this.props.cardNumFieldClasses} />
+
           <CvvInput
             handleCvvChange={this.props.handleCvvChange}
             typeNumsOnly={this.typeNumsOnly}
             cvvLength={this.props.cvvLength}
             handleCvvKeyUp={this.props.handleCvvKeyUp}
             cvvFieldClasses={this.props.cvvFieldClasses} />
+
           <ExpirationInput handleMonthSelect={this.props.handleMonthSelect} handleYearSelect={this.props.handleYearSelect}/>
 
           <div className="row inputs-group">
@@ -56,6 +60,7 @@ class Form extends Component {
           <div className="row inputs-group">
             <button className="btn btn-default" type="submit" id="submit">Submit</button>
           </div>
+          
         </form>
       </div>
     );
